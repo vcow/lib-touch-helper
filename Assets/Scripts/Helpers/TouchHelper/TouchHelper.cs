@@ -20,6 +20,10 @@ namespace Helpers.TouchHelper
 		private static int _lockerId;
 		private static readonly List<int> Lockers = new List<int>();
 
+#if !UNITY_EDITOR
+		private static readonly List<RaycastResult> Res = new List<RaycastResult>();
+#endif
+
 		/// <summary>
 		/// Блокировка тачей.
 		/// </summary>
