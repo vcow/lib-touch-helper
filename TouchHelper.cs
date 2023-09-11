@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,7 +7,9 @@ using UnityEngine.EventSystems;
 namespace Helpers.TouchHelper
 {
 	/// <summary>
-	/// Вспомогательный класс для имитации тачей в Unity editor-е.
+	/// The helper tool for simulating touchscreen touches in Unity editor. Simulates one touch (use LMB)
+	/// and symmetrical double touch for zoom gesture simulation (use RMB for symmetrical double touch).
+	/// Touches blocking supported. 
 	/// </summary>
 	public static class TouchHelper
 	{
@@ -25,9 +28,9 @@ namespace Helpers.TouchHelper
 #endif
 
 		/// <summary>
-		/// Блокировка тачей.
+		/// Lock touches.
 		/// </summary>
-		/// <returns>Уникальный идентификатор блокировки.</returns>
+		/// <returns>The unique identifier of the lock.</returns>
 		public static int Lock()
 		{
 			var id = ++_lockerId;
@@ -36,28 +39,28 @@ namespace Helpers.TouchHelper
 		}
 
 		/// <summary>
-		/// Разблокировка тачей.
+		/// Unlock touches.
 		/// </summary>
-		/// <param name="id">Идентификатор снимаемой блокировки, полученный ранее из метода Lock().</param>
+		/// <param name="id">Identifier of the lock to be disabled, received earlier from the Lock() method.</param>
 		public static void Unlock(int id)
 		{
 			Lockers.Remove(id);
 		}
 
 		/// <summary>
-		/// Флаг, указывающий на наличие блокировки тачей.
+		/// The flag indicates that the touches are locked.
 		/// </summary>
 		public static bool IsLocked => Lockers.Any();
 
 		/// <summary>
-		/// Получить все текущие тачи.
+		/// Get all current touches.
 		/// </summary>
-		/// <returns>Список текущих тачей.</returns>
+		/// <returns>Returns list of current touches.</returns>
 		public static Touch[] GetTouches()
 		{
 			if (IsLocked)
 			{
-				return new Touch[0];
+				return Array.Empty<Touch>();
 			}
 
 			return MakeFakeTouch(out var isZoomGesture)
@@ -68,12 +71,12 @@ namespace Helpers.TouchHelper
 		}
 
 		/// <summary>
-		/// Получить текущий тач.
+		/// Get current touch.
 		/// </summary>
-		/// <param name="touch">Возвращаемый тач.</param>
-		/// <param name="touchNum">Номер тача (для мультитача).</param>
-		/// <param name="ignoreLockers">Флаг, указывающий игнорировать блокировку.</param>
-		/// <returns>Возвращает <code>true</code>, если тач имеется и возвращен в первом аргументе.</returns>
+		/// <param name="touch">The gotten touch.</param>
+		/// <param name="touchNum">A number of the touch (for multituoch).</param>
+		/// <param name="ignoreLockers">Flag to ignore the locking.</param>
+		/// <returns>Returns true if touch is present and returned in the first argument.</returns>
 		public static bool GetTouch(out Touch touch, int touchNum = 0, bool ignoreLockers = false)
 		{
 			if (!ignoreLockers && IsLocked)
@@ -99,9 +102,9 @@ namespace Helpers.TouchHelper
 		}
 
 		/// <summary>
-		/// Проверка на тач по элементу UI (не работает с UI в camera space).
+		/// Checking for touch by UI element (does not work in camera space).
 		/// </summary>
-		/// <returns>Возвращает <code>true</code>, если текущий тач приходится на элемент UI.</returns>
+		/// <returns>Returns true if the current touch is on a UI element.</returns>
 		public static bool IsPointerOverUiObject()
 		{
 #if UNITY_EDITOR
