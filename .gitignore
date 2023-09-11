@@ -35,6 +35,7 @@ sysinfo.txt
 
 # Builds
 *.apk
-*.unitypackage
 
 /Assets/Plugins/
+
+*.DS_Store
