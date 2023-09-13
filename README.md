@@ -22,4 +22,4 @@ From the root of your Git project launch next Git command:
 ```
 git subtree add --prefix Assets/Scripts/Helpers/TouchHelper --squash git@github.com:vcow/lib-touch-helper.git sub-2.0.1
 ```
-That adds TouchHelper from this repository to your project as a subtree at the locstion specified in the <code>--prefix</code> section relative to the root of your project.
+That adds TouchHelper from this repository to your project as a subtree at the location specified in the <code>--prefix</code> section relative to the root of your project.
