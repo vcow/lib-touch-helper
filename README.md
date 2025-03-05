@@ -5,21 +5,44 @@ In addition, the TouchHelper supports touch locking and two-tap pinch-to-zoom ge
 
 See <a href="https://raw.githack.com/vcow/lib-touch-helper/master/docs/html/class_helpers_1_1_touch_helper_1_1_touch_helper.html">documentation</a> for details.
 
-## Applying
-You can download and install <code>touch-helper.unitypackage</code> from this repository. You can also add TouchHelper as dependency from __Github__ or directly include them in your Git project as __subtree__.
+## How to install
+Select one of the following methods:
 
-### Github
-Go to the <code>manifest.json</code> and in the section <code>dependencies</code> add next dependency:
+1. From Unity package.<br/>Select latest release from the https://github.com/vcow/lib-touch-helper/releases and download __window-manager.unitypackage__ from Assets section.
+
+2. From Git URL.<br/>Go to __Package Manager__, press __+__ in the top left of window and select __Install package from git URL__. Enter the URL below:
 ```
+https://github.com/vcow/lib-touch-helper.git#upm
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or
+```
+https://github.com/vcow/lib-touch-helper.git#2.1.0
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if you want to install exactly 2.1.0 version.
+
+3. From OpenUPM.<br/>Go to __Edit -> Project Settings -> Package Manager__ and add next scoked registry:
+* __Name__: package.openupm.com
+* __URL__: https://package.openupm.com
+* __Scope(s)__: com.vcow.touch-helper
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Press __Save__, then go to __Package Manager__ and install __Scene Select Tool__ from the __My Registries -> package.openupm.com__ section.
+
+4. Add to the ```manifest.json```.<br/>Open ```mainfest.json``` and add next string to the ```dependencies``` section:
+```
+{
   "dependencies": {
-    "vcow.helpers.touch-helper": "https://github.com/vcow/lib-touch-helper.git?path=/Assets/Scripts/Helpers/TouchHelper#2.0.1",
+    "com.vcow.touch-helper": "https://github.com/vcow/lib-touch-helper.git#upm",
     ...
   }
+}
 ```
-
-### Subtree
-From the root of your Git project launch next Git command:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or
 ```
-git subtree add --prefix Assets/Scripts/Helpers/TouchHelper --squash git@github.com:vcow/lib-touch-helper.git sub-2.0.1
+{
+  "dependencies": {
+    "com.vcow.touch-helper": "https://github.com/vcow/lib-touch-helper.git#2.1.0",
+    ...
+  }
+}
 ```
-That adds TouchHelper from this repository to your project as a subtree at the location specified in the <code>--prefix</code> section relative to the root of your project.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if you want to install exactly 2.1.0 version.
