@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Helpers.TouchHelper
+namespace Plugins.vcow.TouchHelper
 {
 	internal class TouchCreator
 	{

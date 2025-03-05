@@ -1,0 +1,12 @@
+{
+  "name": "com.vcow.touch-helper",
+  "version": "2.1.0",
+  "displayName": "Touch Helper",
+  "description": "Touchscreen input emulator for Unity Editor.",
+  "unity": "2019.4",
+  "dependencies": {},
+  "author": {
+    "name": "vcow",
+    "email": "virtualcow@gmail.com"
+  }
+}
